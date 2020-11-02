@@ -6,5 +6,31 @@
     </head>
     <body>
         hello world!
+
+        <script type="text/javascript">
+
+
+            //Sends query to databse and returns output
+            async function get(query) {
+                console.log("Sending query: ");
+                console.log(query);
+                console.log("---------------");
+
+                await fetch('http://localhost:3000/db', {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({message: query})
+                }
+                ).then(res => res.json())
+                .then((data) => output = data.message);
+
+                console.log("Query successful");
+                return output;
+            }
+
+            //get("input a query");
+
+        </script>
+
     </body>
 </html>
