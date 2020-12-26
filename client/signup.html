@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Sign In</title>
+        <link rel="stylesheet" href="master.css">
+        <link rel="stylesheet" href="userpage.css">
+        <script type="text/javascript" src="master.js"></script>
+    </head>
+
+    <style media="screen">
+
+        .form {
+            grid-template-rows: 1fr 1fr 70% 1fr;
+        }
+
+        .form .fields {
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        }
+
+    </style>
+
+    <body onload="check()">
+
+        <div class="header">
+            <a href="index.html"><div class="logo"></div></a>
+
+            <div class="nav">
+                <a href="order.html" id="ordertab">
+                    <div>Order</div>
+                </a>
+
+                <a href="gallery.html">
+                    <div>Gallery</div>
+                </a>
+
+                <a href="signin.html" id="usertab">
+                    <div>Sign In</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="container">
+            <div style="text-align: center;">
+                <h1>Sign Up:</h1>
+
+                <div class="form">
+                    <div style="text-align: center;">
+                        <span>Returning User?</span>
+                        <br>
+                        <span>Sign In <a href="signin.html">here</a></span>
+                    </div>
+
+                    <div style="text-align: center; color: red;">
+                        <span id="prompt"> </span>
+                    </div>
+
+                    <div class="fields">
+
+                        <div><label for="fname">First Name: </label></div>
+                        <div><input type="text" name="fname" value="John" id="fname"></div>
+
+                        <div><label for="fname">Last Name: </label></div>
+                        <div><input type="text" name="lname" value="Doe" id="lname"></div>
+
+                        <div><label for="email">Email: </label></div>
+                        <div><input type="text" name="email" value="example@email.com" id="email"></div>
+
+
+                        <div><label for="passA">Password: </label></div>
+                        <div><input type="password" name="passA" value="****" id="passA"></div>
+
+                        <div><label for="passB">Re-Enter Password: </label></div>
+                        <div><input type="password" name="passB" value="****" id="passB"></div>
+                    </div>
+
+
+                    <div style="text-align: center;">
+                        <button type="button" name="submit" onclick="validate()">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div><div class="logo"></div></div>
+            <div><span>Copyright 2020-2021 by CS Student. All Rights Reserved.</span></div>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        async function validate() {
+
+            let fname = document.getElementById('fname').value;
+            let lname = document.getElementById('lname').value;
+            let email = document.getElementById('email').value;
+            let passA = document.getElementById('passA').value;
+            let passB = document.getElementById('passB').value;
+
+            if (fname == "" || lname == "" || email == "" || passA == "" || passB == "") {
+                document.getElementById('prompt').innerHTML = "All fields must be filled";
+                return;
+            }
+
+            if (passA != passB) {
+                document.getElementById('prompt').innerHTML = "Passwords do not match";
+                return;
+            }
+
+            let result = await get("SELECT * FROM customers WHERE email = '" + email + "'");
+
+            if (result.length != 0) {
+                document.getElementById('prompt').innerHTML = "A user with this email already exists";
+                return;
+            }
+
+            let query = "INSERT INTO customers (fname, lname, email, password) VALUES (" +
+                "'" + fname + "', '" + lname + "', '" + email + "', '" + passA + "')";
+
+            await get(query);
+            let user = await get("SELECT id FROM customers WHERE email= '" + email + "'");
+            sessionStorage.setItem('user', user[0].id);
+
+            location.replace("index.html");
+        }
+    </script>
+</html>

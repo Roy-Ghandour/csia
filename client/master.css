@@ -1,0 +1,97 @@
+* {
+    outline: none;
+    box-sizing: border-box;
+
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    margin: 0px;
+}
+
+.header {
+    background: #e3e3e3;
+    height: 8vh;
+
+    position: relative;
+}
+
+.header .logo {
+    position: absolute;
+    left: 0px;
+    width: 12vw;
+    height: 100%;
+    background: url(logo.png) center center no-repeat;
+    background-size: 100%;
+}
+
+.header .nav {
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.header .nav a {
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+
+}
+
+.header .nav div {
+    width: 100%;
+    height: 100%;
+    padding: 0px 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e3e3e3;
+    border-left: solid 2px #000;
+}
+
+.header .nav a:hover div {
+    background: #fff;
+}
+
+.footer {
+    height: 8vh;
+    background: #e3e3e3;
+    display: grid;
+    grid-template-columns: 1fr 70% 1fr;
+}
+
+.footer a {
+    color: #000;
+}
+
+.footer div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.footer .logo {
+    position: absolute;
+    left: 0px;
+    width: 12vw;
+    height: 100%;
+    background: url(logo.png) center center no-repeat;
+    background-size: 100%;
+}
+
+button {
+    border: solid 3px #000;
+    background: transparent;
+    padding: 0.3em 0.6em;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}

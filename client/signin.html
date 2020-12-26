@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Sign In</title>
+        <link rel="stylesheet" href="master.css">
+        <link rel="stylesheet" href="userpage.css">
+        <script type="text/javascript" src="master.js"></script>
+    </head>
+
+    <style media="screen">
+
+        .form {
+            grid-template-rows: 1fr 1fr 50% 1fr;
+        }
+
+        .form .fields {
+            grid-template-rows: 1fr 1fr;
+        }
+
+    </style>
+
+    <body onload="check()">
+
+        <div class="header">
+            <a href="index.html"><div class="logo"></div></a>
+
+            <div class="nav">
+                <a href="order.html" id="ordertab">
+                    <div>Order</div>
+                </a>
+
+                <a href="gallery.html">
+                    <div>Gallery</div>
+                </a>
+
+                <a href="signup.html" id="usertab">
+                    <div>Sign Up</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="container">
+            <div style="text-align: center;">
+                <h1>Sign In:</h1>
+
+                <div class="form">
+                    <div style="text-align: center;">
+                        <span>New User?</span>
+                        <br>
+                        <span>Sign Up <a href="signup.html">here</a></span>
+                    </div>
+
+                    <div style="text-align: center; color: red;">
+                        <span id="prompt"> </span>
+                    </div>
+
+                    <div class="fields">
+                        <div><label for="email">Email: </label></div>
+                        <div><input type="text" name="email" value="example@email.com" id="email"></div>
+
+                        <div><label for="pass">Password: </label></div>
+                        <div><input type="password" name="pass" value="****" id="pass"></div>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <button type="button" name="submit" onclick="authenticate()">Sign in</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div><div class="logo"></div></div>
+            <div><span>Copyright 2020-2021 by CS Student. All Rights Reserved.</span></div>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        async function authenticate() {
+
+            let email = document.getElementById('email').value;
+            let pass = document.getElementById('pass').value;
+
+            let query = "SELECT * FROM customers WHERE email = '" + email + "' AND password = '" + pass + "'";
+            let result = await get(query);
+
+            if (result.length != 0) {
+                sessionStorage.setItem('user', result[0].id);
+            } else {
+                document.getElementById('prompt').innerHTML = "Email or Password is incorrect";
+                return;
+            }
+
+            location.replace("index.html");
+        }
+    </script>
+</html>

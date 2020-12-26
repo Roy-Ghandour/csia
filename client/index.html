@@ -2,35 +2,159 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>CSIA</title>
+        <title>Mechables</title>
+        <link rel="stylesheet" href="master.css">
+        <script src="master.js" charset="utf-8"></script>
     </head>
-    <body>
-        hello world!
 
-        <script type="text/javascript">
+    <style media="screen">
+        .jumbo {
+            width: 100%;
+            height: 60vh;
+            background: url(jumbo.jpg) center center no-repeat;
+            background-size: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .jumbo h1 {
+            color: #fff;
+            font-size: 9em;
+            font-weight: bold;
+        }
+
+        .order {
+            width: 100%;
+            height: 30vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .order div {
+            width: 65vw;
+            height: 15vh;
+            background-color: #353b48;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .order div span {
+            font-size: 4em;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            text-decoration: underline;
+            color: #fff;
+        }
+
+        .gallery {
+            width: 100%;
+            height: 55vh;
+            display: grid;
+            grid-template-rows: 1fr 20vw 1fr;
+            text-align: center;
+        }
+
+        .gallery div {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery h3 {
+            font-size: 2.75em;
+            font-weight: bold;
+            margin: 0.5em 0px;
+            color: #353b48;
+        }
+
+        .gallery .preview {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        }
+
+        .gallery .preview div {
+            width: 100%;
+            height: 100%;
+            background-size: 100%;
+        }
+
+        .gallery a {
+            color: #000;
+            font-size: 1.15em;
+            font-weight: bold;
+        }
 
 
-            //Sends query to databse and returns output
-            async function get(query) {
-                console.log("Sending query: ");
-                console.log(query);
-                console.log("---------------");
+    </style>
 
-                await fetch('http://localhost:3000/db', {
-                    method: "POST",
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify({message: query})
-                }
-                ).then(res => res.json())
-                .then((data) => output = data.message);
+    <body onload="check()">
+        <div class="header">
+            <a href="index.html"><div class="logo"></div></a>
 
-                console.log("Query successful");
-                return output;
-            }
+            <div class="nav">
+                <a href="order.html" id="ordertab">
+                    <div>Order</div>
+                </a>
 
-            //get("input a query");
+                <a href="gallery.html">
+                    <div>Gallery</div>
+                </a>
 
-        </script>
+                <a href="purchases.html" id="usertab">
+                    <div id="usertext">Purchases</div>
+                </a>
+            </div>
+        </div>
 
+        <div class="jumbo">
+            <h1>Mechables</h1>
+        </div>
+
+        <div class="order">
+            <a href="order.html" id="calltoaction">
+                <div>
+                    <span>Order Now</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="gallery">
+            <div>
+                <h3>Gallery:</h3>
+            </div>
+
+            <div class="preview">
+                <div style="background: url(images/img1.jpg) left top no-repeat; background-size: 130%;"></div>
+                <div style="background: url(images/img2.jpg) right center no-repeat; background-size: 250%;"></div>
+                <div style="background: url(images/img4.png) right top no-repeat; background-size: 160%;"></div>
+                <div style="background: url(images/img3.jpg) center center no-repeat; background-size: 150%;"></div>
+                <div style="background: url(images/img5.jpg) left center no-repeat; background-size: 180%;"></div>
+            </div>
+            <div>
+                <a href="gallery.html">See More</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div><div class="logo"></div></div>
+            <div><span>Copyright 2020-2021 by CS Student. All Rights Reserved.</span></div>
+            <div><a href="#">Back to top ^</a></div>
+        </div>
     </body>
+
+    <script type="text/javascript">
+        if (sessionStorage.getItem('user') === null) {
+            document.getElementById('usertab').href = "signin.html";
+            document.getElementById('usertext').innerHTML = "Sign In";
+            document.getElementById('calltoaction').href = "signin.html";
+        }
+    </script>
 </html>

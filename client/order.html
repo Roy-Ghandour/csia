@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Cable Designer</title>
+
+        <link rel="stylesheet" href="master.css">
+        <link rel="stylesheet" href="order.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="master.js"></script>
+        <script type="text/javascript" src="order.js"></script>
+    </head>
+
+    <body>
+
+        <div class="header">
+            <a href="index.html"><div class="logo"></div></a>
+
+            <div class="nav">
+                <a href="order.html">
+                    <div>Order</div>
+                </a>
+
+                <a href="gallery.html">
+                    <div>Gallery</div>
+                </a>
+
+                <a href="purchases.html" id="usertab">
+                    <div>Purchases</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="designer">
+            <div class="slot">
+                <div class="card">
+                    <div class="title">
+                        <span>The Cable:</span>
+                    </div>
+
+                    <div class="conf">
+                        <div class="capsule">
+                            <label for="length">Length: </label>
+                            <select class="combo" name="length" id="length"></select>
+                            <span id="lengthtext" class="addtext warn">+5$</span>
+                        </div>
+                    </div>
+
+                    <div class="cable">
+                        <div><!--Spacer--></div>
+                        <div class="opts">
+                            <label for="connA">Connector: </label>
+                            <select class="combo" name="connA" id="connA"></select>
+                            <span id="connAtext" class="addtext warn">+5$</span>
+                        </div>
+
+                        <div class="image">
+
+                        </div>
+
+                        <div class="opts">
+                            <label for="connB">Connector: </label>
+                            <select class="combo" name="connB" id="connB"></select>
+                            <span id="connBtext" class="addtext warn">+5$</span>
+                        </div>
+                        <div><!--Spacer--></div>
+                    </div>
+
+                    <div class="info">
+                        <div class="label">
+                            <span style="right: 0px;">Host Side</span>
+                        </div>
+
+                        <div class="context">
+                            <span>Host Side = Computer</span>
+                            <span>Device Side = Keyboard</span>
+                        </div>
+
+                        <div class="label">
+                            <span>Device Side</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slot">
+                <div class="card">
+                    <div class="title">
+                        <span>Colors:</span>
+                    </div>
+
+                    <div class="conf" style="grid-template-columns: 1fr 1fr 1fr;">
+                        <div class="capsule">
+                            <label for="colorA">Color 1: </label>
+                            <select class="combo" name="colorA" id="colorA"></select>
+                            <span id="colorAtext" class="addtext warn">+5$</span>
+                        </div>
+                        <div class="capsule">
+                            <label for="colorB">Color 2: </label>
+                            <select class="combo" name="colorB" id="colorB"></select>
+                            <span id="colorBtext" class="addtext warn">+5$</span>
+                        </div>
+                        <div class="capsule">
+                            <label for="wrap">Heatshrink: </label>
+                            <select class="combo" name="wrap" id="wrap"></select>
+                            <span id="wraptext" class="addtext warn">+5$</span>
+                        </div>
+                    </div>
+
+                    <div class="cable">
+                        <div><!--Spacer--></div>
+                        <div class="opts">
+                            <!--Empty-->
+                        </div>
+
+                        <div class="image">
+
+                        </div>
+
+                        <div class="opts">
+                            <!--Empty-->
+                        </div>
+                        <div><!--Spacer--></div>
+                    </div>
+
+                    <div class="info">
+                        <div class="label">
+                            <span style="right: 0px;">Host Side</span>
+                        </div>
+
+                        <div class="context">
+                            <span>Host Side = Computer</span>
+                            <span>Device Side = Keyboard</span>
+                        </div>
+
+                        <div class="label">
+                            <span>Device Side</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slot">
+                <div class="card">
+                    <div class="title">
+                        <span>Accessories:</span>
+                    </div>
+
+                    <div class="conf" style="grid-template-columns: 1fr 1fr;">
+                        <div class="capsule">
+                            <label for="aviator">Aviator: </label>
+                            <select class="combo" name="aviator" id="aviator">
+                                <!--
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            -->
+                            </select>
+                            <span id="aviatortext" class="addtext warn">+5$</span>
+                        </div>
+
+                        <div class="capsule">
+                            <label for="coil">Coil: </label>
+                            <select class="combo" name="coil" id="coil"></select>
+                            <span id="coiltext" class="addtext warn">+5$</span>
+                        </div>
+                    </div>
+
+                    <div class="cable">
+                        <div><!--Spacer--></div>
+                        <div class="opts">
+                            <!--Empty-->
+                        </div>
+
+                        <div class="image">
+
+                        </div>
+
+                        <div class="opts">
+                            <!--Empty-->
+                        </div>
+                        <div><!--Spacer--></div>
+                    </div>
+
+                    <div class="info">
+                        <div class="label">
+                            <span style="right: 0px;">Host Side</span>
+                        </div>
+
+                        <div class="context">
+                            <span>Host Side = Computer</span>
+                            <span>Device Side = Keyboard</span>
+                        </div>
+
+                        <div class="label">
+                            <span>Device Side</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="prices">
+            <div class="subheading">
+                <span>Price Breakdown:</span>
+            </div>
+
+            <div class="list">
+                <table>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="tally">
+                <span>VAT = $3.65</span>
+                <span>Shipping = $12.73</span>
+                <span>Total = $30</span>
+            </div>
+
+            <div class="submit">
+                <button onclick="place()" type="button" name="button">Place Order</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div><div class="logo"></div></div>
+            <div><span>Copyright 2020-2021 by CS Student. All Rights Reserved.</span></div>
+            <div><a href="#">Back to top ^</a></div>
+        </div>
+
+    </body>
+
+    <script type="text/javascript">
+        importOptions();
+    </script>
+</html>
+
+<!--
+<script type="text/javascript">
+    //Sends query to databse and returns output
+    async function get(query) {
+        console.log("Sending query: ");
+        console.log(query);
+        console.log("---------------");
+
+        await fetch('http://localhost:3000/db', {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({message: query})
+        }
+        ).then(res => res.json())
+        .then((data) => output = data.message);
+
+        console.log("Query successful");
+        return output;
+    }
+
+    async function test () {
+        let query = "SELECT * FROM users";
+        let result = await get(query);
+
+        for (let i in result) {
+            console.log(result[i].fname + " " + result[i].lname);
+        }
+    }
+
+    test();
+
+</script>
+-->

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Purchases</title>
+        <link rel="stylesheet" href="master.css">
+        <script type="text/javascript" src="master.js"></script>
+    </head>
+
+    <style media="screen">
+
+        #list {
+            padding: 10vh 0px;
+            display: grid;
+            min-height: 84vh;
+        }
+
+        #list #error {
+            display: none;
+            width: 100%;
+            height: 20vh;
+            text-align: center;
+        }
+
+        #error a {
+            color: #000;
+        }
+
+        #list .slot {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1em 0px;
+        }
+
+        .slot .card {
+            width: 60vw;
+            min-height: 16vh;
+            background: #e3e3e3;
+            border-radius: 15px;
+            box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.4);
+        }
+
+        .card .head {
+            width: 100%;
+            height: 25%;
+            display: grid;
+            grid-template-columns: 20% 60% 20%;
+        }
+
+        .head div {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .head div span {
+            position: absolute;
+            left: 1em;
+            top: 1em;
+            font-size: 1.2em;
+            text-decoration: underline;
+            letter-spacing: 2px;
+            font-weight: bold;
+
+        }
+
+        .head div button {
+            position: absolute;
+            right: 1em;
+            top: 1em;
+            color: red;
+        }
+
+        .head .meta {
+            text-align: center;
+        }
+
+        .card .body {
+            width: 100%;
+            height: 75%;
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            text-align: center;
+            padding-bottom: 1em;
+        }
+    </style>
+
+    <body>
+        <div class="header">
+            <a href="index.html"><div class="logo"></div></a>
+
+            <div class="nav">
+                <a href="order.html">
+                    <div>Order</div>
+                </a>
+
+                <a href="gallery.html">
+                    <div>Gallery</div>
+                </a>
+
+                <a href="purchases.html" id="usertab">
+                    <div id="usertext">Purchases</div>
+                </a>
+            </div>
+        </div>
+
+
+        <div  id="list">
+
+            <div id="error">
+                <h1>You have not made any purchases!</h1>
+                <a href="order.html">Place one here</a>
+            </div>
+
+            <!--
+            Reference:
+            <div class="slot">
+                <div class="card">
+                    <div class="head">
+                        <div>
+                            <span id="date">17/3/2020</span>
+                        </div>
+
+                        <div class="meta">
+                            <h2>Order: #239395</h2>
+                            <h4>Progress: Manufacturing</h4>
+                        </div>
+
+                        <div>
+                            <button type="button" name="button">Cancel Order</button>
+                        </div>
+                    </div>
+
+                    <div class="body">
+                        <span>Details:</span>
+                        <span>-</span>
+                        <span>4m USB-C to MINI-B</span>
+                        <span>Violet X Sea Green</span>
+                        <span>Black Heatshrink</span>
+                        <span>7cm coil</span>
+                        <span>Aviator Connector</span>
+                    </div>
+                </div>
+            </div>
+-->
+        </div>
+
+
+        <div class="footer">
+            <div><div class="logo"></div></div>
+            <div><span>Copyright 2020-2021 by CS Student. All Rights Reserved.</span></div>
+            <div><a href="#">Back to top ^</a></div>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+
+        //not final, need to check agaisnt java
+        let states = [
+            "Manufacturing",
+            "Manufacturing",
+            "Shipping",
+            "Shipping",
+            "Delivered",
+            "Cancelled"
+        ];
+
+        let connectors = [
+            "USB-A",
+            "USB-C",
+            "MICRO-B",
+            "MINI-B"
+        ];
+
+        function div(name) {
+            let element = document.createElement('div');
+            if (name != null) element.className = name;
+            return element;
+        }
+
+        function text(text) {
+            let element = document.createElement('span');
+            element.innerHTML = text;
+            return element;
+        }
+
+        async function buildCard(order) {
+
+            console.log(order);
+
+            let slot = div('slot');
+            let card = div('card');
+
+            let head = div('head');
+
+            let left = div();
+            let date = text(order.placed.slice(0, 10));
+            left.appendChild(date);
+
+            let right = div();
+            let button = document.createElement('button');
+            //temp
+            button.innerHTML = "Cancel Order";
+            button.name = order.id;
+            button.onclick = async function func() {
+                let query = "UPDATE orders SET status = 5 WHERE id=" + button.name;
+                await get(query);
+                location.reload();
+            };
+            if (order.status > 1) button.disabled = true;
+            right.appendChild(button);
+
+            let meta = div('meta');
+            let ordernum = document.createElement('h2');
+            ordernum.innerHTML = "Order #" + order.id;
+            let status = document.createElement('h4');
+            status.innerHTML = "Progress: " + states[order.status];
+            meta.appendChild(ordernum);
+            meta.appendChild(status);
+
+            head.appendChild(left);
+            head.appendChild(meta);
+            head.appendChild(right);
+
+            let body = div('body');
+            let header = text('Details:');
+            let spacer = text('-');
+
+            let cable = text(order.length + 'm ' + connectors[order.connA] + ' to ' + connectors[order.connB]);
+
+            let colorA, colorB;
+            let pallate = await get("SELECT * FROM colors");
+            for (const color in pallate) {
+                if (order.colorA == pallate[color].id) colorA = pallate[color].name;
+                if (order.colorB == pallate[color].id) colorB = pallate[color].name;
+            }
+
+            let colors = text(colorA + ' X ' + colorB);
+
+            let wrap = text('');
+            pallate = await get("SELECT * FROM wraps");
+            for (const color in pallate) {
+                if (order.wrap == pallate[color].id) {
+                    wrap = text(pallate[color].name + ' Heatshrink');
+                    break;
+                }
+            }
+
+            let coil = text('');
+            if (order.coil != 0) {
+                coil = text(order.coil + 'cm coil');
+            }
+
+            let aviator = text('');
+            if (order.aviator == 1) {
+                aviator = text('Aviator Connector');
+            }
+
+            body.appendChild(header);
+            body.appendChild(spacer);
+            body.appendChild(cable);
+            body.appendChild(colors);
+            body.appendChild(wrap);
+            body.appendChild(coil);
+            body.appendChild(aviator);
+
+            card.appendChild(head);
+            card.appendChild(body);
+            slot.appendChild(card);
+            document.getElementById('list').appendChild(slot);
+        }
+
+        async function load() {
+            let orders = await get('SELECT * FROM orders WHERE customers_id=' + sessionStorage.getItem('user'));
+
+            if (orders.length == 0) {
+                let message = document.createElement('h1');
+                message.innerHTML = "You have not made any purchases!";
+                document.getElementById('error').style.display = "block";
+                return;
+            }
+
+            for (const i in orders) {
+                buildCard(orders[i]);
+            }
+        }
+
+        load();
+
+
+
+    </script>
+</html>
