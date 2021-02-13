@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Mechables</title>
+        <link rel="stylesheet" href="master.css">
+        <script src="master.js" charset="utf-8"></script>
+    </head>
+
+    <style media="screen">
+
+        .container {
+            margin: 3vh 0px;
+        }
+
+        .gallery {
+            width: 100%;
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+        }
+
+        .gallery .row {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            margin: 3vh 0px;
+        }
+
+        .gallery .row div {
+            width: 100%;
+            height: 100%;
+            margin: auto;
+        }
+
+        .gallery .row div div {
+            width: 28vh;
+            height: 28vh;
+        }
+
+    </style>
+
+    <body onload="check()">
+        <div class="header">
+            <a href="index.html"><div class="logo"></div></a>
+
+            <div class="nav">
+                <a href="order.html" id="ordertab">
+                    <div>Order</div>
+                </a>
+
+                <a href="gallery.html">
+                    <div>Gallery</div>
+                </a>
+
+                <a href="purchases.html" id="usertab">
+                    <div id="usertext">Purchases</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="container">
+            <div style="text-align: center;">
+                <h1>Gallery:</h1>
+            </div>
+
+
+        </div>
+
+
+        <div class="gallery">
+            <div class="row">
+                <div><div style="background: url(images/img1.jpg) left top no-repeat; background-size: 140%;"></div></div>
+                <div><div style="background: url(images/img2.jpg) right center no-repeat; background-size: 250%;"></div></div>
+                <div><div style="background: url(images/img4.png) right top no-repeat; background-size: 160%;"></div></div>
+                <div><div style="background: url(images/img3.jpg) center center no-repeat; background-size: 150%;"></div></div>
+            </div>
+
+            <div class="row">
+                <div><div style="background: url(images/img5.jpg) left center no-repeat; background-size: 180%;"></div></div>
+                <div><div style="background: url(images/img6.png) center center no-repeat; background-size: 100%;"></div></div>
+                <div><div style="background: url(images/img7.jpeg) right top no-repeat; background-size: 120%;"></div></div>
+                <div><div style="background: url(images/img8.jpg) right center no-repeat; background-size: 130%;"></div></div>
+            </div>
+
+            <div class="row">
+                <div><div style="background: url(images/img9.png) left top no-repeat; background-size: 130%;"></div></div>
+                <div><div style="background: url(images/img10.jpg) left bottom no-repeat; background-size: 170%;"></div></div>
+                <div><div style="background: url(images/img11.png) center bottom no-repeat; background-size: 160%;"></div></div>
+                <div><div style="background: url(images/img12.png) center center no-repeat; background-size: 140%;"></div></div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <div><div class="logo"></div></div>
+            <div><span>Copyright 2020-2021 by CS Student. All Rights Reserved.</span></div>
+            <div><a href="#">Back to top ^</a></div>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+        if (sessionStorage.getItem('user') === null) {
+            document.getElementById('usertab').href = "signin.html";
+            document.getElementById('usertext').innerHTML = "Sign In";
+            document.getElementById('calltoaction').href = "signin.html";
+        }
+    </script>
+</html>
